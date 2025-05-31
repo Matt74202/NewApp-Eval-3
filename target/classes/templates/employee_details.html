@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Fiche employé</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Fiche employé</h2>
+        <a th:href="@{/employees}" class="btn btn-secondary mb-3">Retour</a>
+        <h3 th:text="${employee.employeeName}"></h3>
+        <p><strong>ID:</strong> <span th:text="${employee.name}"></span></p>
+        <p><strong>Département:</strong> <span th:text="${employee.department}"></span></p>
+        <h4>Historique des salaires</h4>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Salaire brut</th>
+                    <th>Salaire net</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="salary : ${salaries}">
+                    <td th:text="${salary.postingDate}"></td>
+                    <td th:text="${salary.grossPay}"></td>
+                    <td th:text="${salary.netPay}"></td>
+                    <td><a th:href="@{/payroll/pdf/{id}/{month}(id=${employee.name},month=${salary.postingDate})}" class="btn btn-primary btn-sm">Exporter PDF</a></td>
+                </tr>
+            </tbody>
+        </table>
+        <div th:if="${errorMessage}" class="alert alert-danger mt-3" th:text="${errorMessage}"></div>
+    </div>
+</body>
+</html>

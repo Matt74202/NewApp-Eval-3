@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Tableau des salaires</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Tableau des salaires</h2>
+        <a th:href="@{/employees}" class="btn btn-secondary mb-3">Retour</a>
+        <form th:action="@{/payroll}" method="get" class="mb-3">
+            <select name="month" th:onchange="this.form.submit()" class="form-control w-auto">
+                <option value="">Tous les mois</option>
+                <option value="2025-01">Janvier 2025</option>
+                <option value="2025-02">Février 2025</option>
+            </select>
+        </form>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Employé</th>
+                    <th>Gains</th>
+                    <th>Déductions</th>
+                    <th>Salaire net</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="payroll : ${payrolls}">
+                    <td th:text="${payroll.employeeName}"></td>
+                    <td>
+                        <ul>
+                            <li th:each="component : ${payroll.earnings}" th:text="${component.name + ': ' + component.amount}"></li>
+                        </ul>
+                    </td>
+                    <td>
+                        <ul>
+                            <li th:each="component : ${payroll.deductions}" th:text="${component.name + ': ' + component.amount}"></li>
+                        </ul>
+                    </td>
+                    <td th:text="${payroll.netPay}"></td>
+                </tr>
+            </tbody>
+        </table>
+        <div th:if="${errorMessage}" class="alert alert-danger mt-3" th:text="${errorMessage}"></div>
+    </div>
+</body>
+</html>
