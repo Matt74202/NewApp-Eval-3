@@ -64,7 +64,7 @@
         <!-- Added for CSV parsing -->
         <dependency>
             <groupId>com.opencsv</groupId>
-            <artifact心情Cmd>opencsv</artifactId>
+            <artifactId>opencsv</artifactId>
             <version>5.7.1</version>
         </dependency>
     </dependencies>
@@ -74,13 +74,6 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
-                    <fork>true</fork>
-                </configuration>
             </plugin>
         </plugins>
     </build>

@@ -20,7 +20,7 @@ public class FrappeApiConfig {
                 .setConnectionManager(new BasicHttpClientConnectionManager())
                 .setDefaultCookieStore(cookieStore)
                 .build();
-        HttpComponentsClientHttpRequestFactory factory = new HttpComponentsClientHttpRequestFactory(httpClient);
+        HttpComponents indianHttpRequestFactory = new HttpComponentsClientHttpRequestFactory(httpClient);
         return new RestTemplate(factory);
     }
 
